@@ -1,4 +1,5 @@
 ﻿using InterviewTest.Model;
+using InterviewTest.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
 using System.Collections.Generic;
@@ -9,32 +10,33 @@ namespace InterviewTest.Controllers
     [Route("[controller]")]
     public class EmployeesController : ControllerBase
     {
+
+        private IEmployeeService _employeeService;
+
+        public EmployeesController(IEmployeeService employeeService)
+        {
+            _employeeService = employeeService;
+        }
+
         [HttpGet]
         public List<Employee> Get()
         {
-            var employees = new List<Employee>();
+            var employeesResult = _employeeService.GetAll();
 
-            var connectionStringBuilder = new SqliteConnectionStringBuilder() { DataSource = "./SqliteDB.db" };
-            using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
-            {
-                connection.Open();
+            return employeesResult.Success
+                   ? employeesResult.Result
+                   : new List<Employee>();
+        }
 
-                var queryCmd = connection.CreateCommand();
-                queryCmd.CommandText = @"SELECT Name, Value FROM Employees";
-                using (var reader = queryCmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        employees.Add(new Employee
-                        {
-                            Name = reader.GetString(0),
-                            Value = reader.GetInt32(1)
-                        });
-                    }
-                }
-            }
+        [HttpPost]
+        public IActionResult Post(Employee employee)
+        {
+            return Ok();
+        }
 
-            return employees;
+        public IActionResult Put(Employee employee)
+        {
+            return Ok();
         }
     }
 }

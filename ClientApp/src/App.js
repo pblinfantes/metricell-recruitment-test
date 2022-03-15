@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import EmployeeList from './EmployeeList';
 
-export default class App extends Component {
+function App() {
 
-  render () {
     return (
-      <div>Complete your app here</div>
-    );
-  }
+        <EmployeeList />
+    )
 }
+
+export default App;

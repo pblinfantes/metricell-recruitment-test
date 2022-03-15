@@ -1,3 +1,5 @@
+using InterviewTest.Services.Contracts;
+using InterviewTest.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -28,6 +30,8 @@ namespace InterviewTest
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<IEmployeeService, EmployeeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
