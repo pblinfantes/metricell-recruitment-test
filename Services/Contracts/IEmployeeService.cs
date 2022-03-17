@@ -1,6 +1,5 @@
-﻿using InterviewTest.Commons.Requests;
+﻿using InterviewTest.Model;
 using InterviewTest.Commons.Results;
-using InterviewTest.Model;
 using System.Collections.Generic;
 
 namespace InterviewTest.Services.Contracts

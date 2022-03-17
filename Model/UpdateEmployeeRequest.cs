@@ -1,6 +1,6 @@
 ﻿using InterviewTest.Model;
 
-namespace InterviewTest.Commons.Requests
+namespace InterviewTest.Model
 {
     public class UpdateEmployeeRequest
     {

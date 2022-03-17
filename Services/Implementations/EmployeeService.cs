@@ -1,5 +1,4 @@
-﻿using InterviewTest.Commons.Requests;
-using InterviewTest.Commons.Results;
+﻿using InterviewTest.Commons.Results;
 using InterviewTest.Model;
 using InterviewTest.Services.Contracts;
 using Microsoft.Data.Sqlite;
