@@ -1,4 +1,5 @@
-﻿using InterviewTest.Commons.Results;
+﻿using InterviewTest.Commons.Requests;
+using InterviewTest.Commons.Results;
 using InterviewTest.Model;
 using System.Collections.Generic;
 
@@ -10,9 +11,9 @@ namespace InterviewTest.Services.Contracts
 
         public ProcessResult<Employee> AddEmployee(Employee employee);
 
-        public ProcessResult<Employee> UpdateEmployee(Employee employee);
+        public ProcessResult<Employee> UpdateEmployee(UpdateEmployeeRequest employee);
 
-        public ProcessResult RemoveEmployee(Employee employee);
+        public ProcessResult<Employee> RemoveEmployee(Employee employee);
 
     }
 }

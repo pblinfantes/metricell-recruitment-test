@@ -1,7 +1,10 @@
-﻿using InterviewTest.Model;
+﻿using InterviewTest.Commons.Requests;
+using InterviewTest.Commons.Results;
+using InterviewTest.Model;
 using InterviewTest.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 
 namespace InterviewTest.Controllers
@@ -29,14 +32,24 @@ namespace InterviewTest.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Employee employee)
+        public ProcessResult<Employee> Post(Employee employee)
         {
-            return Ok();
+            var addEmployeeResult = _employeeService.AddEmployee(employee);
+            return addEmployeeResult;
         }
 
-        public IActionResult Put(Employee employee)
+        [HttpPut]
+        public ProcessResult<Employee> Put(UpdateEmployeeRequest request)
         {
-            return Ok();
+            var updateEmployeeResult = _employeeService.UpdateEmployee(request);
+            return updateEmployeeResult;
+        }
+
+        [HttpDelete]
+        public ProcessResult<Employee> Delete(Employee employee)
+        {
+            var removeEmployeeResult = _employeeService.RemoveEmployee(employee);
+            return removeEmployeeResult;
         }
     }
 }
