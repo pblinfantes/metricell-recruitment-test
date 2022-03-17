@@ -23,7 +23,13 @@ namespace InterviewTest.Services.Implementations
                     connection.Open();
 
                     var queryCmd = connection.CreateCommand();
-                    queryCmd.CommandText = @"SELECT Name, Value FROM Employees ORDER BY Name asc";
+                    queryCmd.CommandText = @"SELECT 
+                                                Name, 
+                                                Value 
+                                            FROM 
+                                                Employees 
+                                            ORDER BY 
+                                                Name asc";
                     using (var reader = queryCmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -80,7 +86,7 @@ namespace InterviewTest.Services.Implementations
                     connection.Open();
 
                     var queryCmd = connection.CreateCommand();
-                    queryCmd.CommandText = $"UPDATE Employees SET Name=@NewName, Value=@NewValue Where Name = @OriginalName AND Value = @OriginalValue";
+                    queryCmd.CommandText = $"UPDATE Employees SET Name=@NewName, Value=@NewValue WHERE Name = @OriginalName AND Value = @OriginalValue";
                     queryCmd.Parameters.Add(new SqliteParameter("@NewName", request.UpdatedEmployee.Name));
                     queryCmd.Parameters.Add(new SqliteParameter("@NewValue", request.UpdatedEmployee.Value));
                     queryCmd.Parameters.Add(new SqliteParameter("@OriginalName", request.OriginalEmployee.Name));
